@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-c3-devkitm-1",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": { "builder": "rust-nostd-esp" }
+    },
+    {
+      "type": "wokwi-ntc-temperature-sensor",
+      "id": "ntc1",
+      "top": -7,
+      "left": -269.4,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -1.2,
+      "left": 179.4,
+      "rotate": 90,
+      "attrs": { "color": "red" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "ntc1:GND", "esp:GND.1", "black", [ "h0" ] ],
+    [ "ntc1:VCC", "esp:3V3.1", "red", [ "h0" ] ],
+    [ "ntc1:OUT", "esp:4", "green", [ "h96", "v143.9", "h153.6", "v-67.2" ] ],
+    [ "led1:C", "esp:GND.10", "black", [ "h0" ] ],
+    [ "led1:A", "esp:9", "green", [ "h-19.2", "v28.8" ] ]
+  ],
+  "serialMonitor": { "display": "terminal", "convertEol": true },
+  "dependencies": {}
+}
